@@ -1,4 +1,4 @@
-module github.com/ShadowMegandhi/tubeshift/helper
+module github.com/ShadowMegandhi/extracttube/helper
 
 go 1.26.0
 

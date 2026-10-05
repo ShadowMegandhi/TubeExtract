@@ -9,7 +9,7 @@ import (
 	"runtime"
 )
 
-const appName = "TubeShift"
+const appName = "ExtractTube"
 
 func appDir() string {
 	home, _ := os.UserHomeDir()
@@ -23,9 +23,9 @@ func appDir() string {
 		return filepath.Join(home, "Library", "Application Support", appName)
 	default:
 		if d := os.Getenv("XDG_DATA_HOME"); d != "" {
-			return filepath.Join(d, "tubeshift")
+			return filepath.Join(d, "extracttube")
 		}
-		return filepath.Join(home, ".local", "share", "tubeshift")
+		return filepath.Join(home, ".local", "share", "extracttube")
 	}
 }
 
@@ -40,7 +40,7 @@ func exeName(name string) string {
 
 func toolPath(name string) string { return filepath.Join(binDir(), exeName(name)) }
 
-func installedHelperPath() string { return filepath.Join(appDir(), exeName("tubeshift-helper")) }
+func installedHelperPath() string { return filepath.Join(appDir(), exeName("extracttube-helper")) }
 
 func fileExists(p string) bool {
 	info, err := os.Stat(p)

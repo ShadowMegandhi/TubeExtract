@@ -63,7 +63,7 @@ func runHost() int {
 
 func (h *host) send(v any) {
 	if err := h.out.Send(v); err != nil {
-		fmt.Fprintln(os.Stderr, "tubeshift-helper: send failed:", err)
+		fmt.Fprintln(os.Stderr, "extracttube-helper: send failed:", err)
 	}
 }
 
@@ -126,7 +126,7 @@ func (h *host) startDownload(req Request) {
 	}
 	ytdlp := toolPath("yt-dlp")
 	if !fileExists(ytdlp) {
-		h.fail(req.ID, "yt-dlp is missing. Run the TubeShift helper installer again.")
+		h.fail(req.ID, "yt-dlp is missing. Run the ExtractTube helper installer again.")
 		return
 	}
 	outDir := downloadsDir()
