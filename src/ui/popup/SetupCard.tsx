@@ -1,6 +1,6 @@
 import { command } from '../shared/useSession';
 
-export const RELEASES_URL = 'https://github.com/ShadowMegandhi/tubeextract/releases/latest';
+export const RELEASES_URL = 'https://github.com/ShadowMegandhi/TubeExtract/releases/latest';
 
 type Props = { lastError: string | undefined };
 

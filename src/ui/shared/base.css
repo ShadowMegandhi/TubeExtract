@@ -4,13 +4,13 @@
   --border: #e3e3e8;
   --text: #17171c;
   --muted: #6b6b76;
-  --accent: #5b5bd6;
-  --accent-hover: #4c4cc4;
+  --accent: #ff0000;
+  --accent-hover: #d90000;
   --accent-text: #ffffff;
   --ok: #2f9e5b;
   --warn-bg: #fff6e5;
   --warn-text: #7a4b00;
-  --error: #cd2b31;
+  --error: #b42318;
   --radius: 10px;
   color-scheme: light dark;
 }
@@ -22,8 +22,8 @@
     --border: #33333b;
     --text: #ededf0;
     --muted: #9a9aa6;
-    --accent: #8080f0;
-    --accent-hover: #9696ff;
+    --accent: #ff2b2b;
+    --accent-hover: #ff5555;
     --warn-bg: #3a2c10;
     --warn-text: #ffd48a;
     --error: #ff6b70;

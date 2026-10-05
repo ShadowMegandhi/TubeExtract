@@ -11,7 +11,7 @@ Works in Chrome, Edge, Brave and other Chromium browsers on Windows, macOS and L
 
 ## Install
 
-Download everything from the **[latest release](https://github.com/ShadowMegandhi/tubeextract/releases/latest)**.
+Download everything from the **[latest release](https://github.com/ShadowMegandhi/TubeExtract/releases/latest)**.
 
 ### 1. The extension
 
