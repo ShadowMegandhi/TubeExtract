@@ -1,6 +1,6 @@
 {
   "name": "tubeshift",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Chrome extension: save YouTube links as MP4/MP3 and convert media files in the browser.",
   "type": "module",

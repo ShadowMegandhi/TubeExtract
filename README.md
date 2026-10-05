@@ -50,6 +50,7 @@ Then open TubeShift in Chrome and click **Check again**. You can delete the help
 
 | Problem | Fix |
 | --- | --- |
+| Chrome says "Disable developer mode extensions" when it starts | Expected for any extension that isn't from the Web Store. Close the message; TubeShift keeps working. |
 | "One-time setup needed" stays after installing the helper | Fully quit and reopen Chrome, then click **Check again**. |
 | A YouTube download fails | YouTube changes often. Click **Update yt-dlp** at the bottom of the popup and try again. |
 | "Sign in to confirm you're not a bot" | YouTube is rate-limiting your connection. Wait a while, or update yt-dlp. |

@@ -17,7 +17,10 @@ export function SetupCard({ lastError }: Props) {
             Download <b>tubeshift-helper</b> for your system from the{' '}
             <a href={RELEASES_URL} target="_blank" rel="noopener noreferrer">latest release</a>.
           </li>
-          <li>Open it once. It sets itself up and says "All done".</li>
+          <li>
+            Open it once. It sets itself up and says "All done".
+            <span class="muted"> (Windows may warn it's unrecognised: click <b>More info → Run anyway</b>.)</span>
+          </li>
           <li>Click <b>Check again</b> below.</li>
         </ol>
         <button class="btn btn-block" onClick={() => void command({ type: 'recheck-helper' })}>Check again</button>
