@@ -1,0 +1,12 @@
+node_modules/
+dist/
+release/
+coverage/
+public/ffmpeg/
+*.pem
+*.crx
+.env
+.env.*
+helper/bin/
+test-results/
+playwright-report/

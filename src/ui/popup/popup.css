@@ -1,0 +1,30 @@
+body { width: 360px; }
+
+.popup { display: flex; flex-direction: column; }
+
+.header { display: flex; align-items: center; gap: 10px; padding: 14px 16px 10px; }
+.header img { width: 26px; height: 26px; }
+.header h1 { margin: 0; font-size: 16px; }
+
+.tabs { display: flex; border-bottom: 1px solid var(--border); padding: 0 16px; gap: 18px; }
+.tabs button {
+  padding: 8px 0 10px; border: none; background: none; cursor: pointer; font-weight: 600;
+  color: var(--muted); border-bottom: 2px solid transparent; margin-bottom: -1px;
+}
+.tabs button[aria-selected="true"] { color: var(--text); border-bottom-color: var(--accent); }
+
+.panel { padding: 16px; }
+
+.job-title { font-weight: 600; }
+.job-meta { display: flex; justify-content: space-between; }
+
+.setup ol { margin: 6px 0 10px; padding-left: 18px; }
+.setup li { margin-bottom: 4px; }
+.setup a { color: inherit; font-weight: 600; }
+
+.footer {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 16px; border-top: 1px solid var(--border);
+}
+
+.update-output { max-height: 80px; overflow: auto; white-space: pre-wrap; font: 11px/1.4 ui-monospace, Consolas, monospace; margin: 6px 0 0; }

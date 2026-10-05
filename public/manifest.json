@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "TubeShift - YouTube to MP4/MP3 & Media Converter",
+  "short_name": "TubeShift",
+  "version": "0.1.0",
+  "description": "Save YouTube links as MP4 or MP3, and convert video and audio files right in your browser. Not affiliated with YouTube.",
+  "minimum_chrome_version": "120",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgwHTV4RO7VYcb9zP3V1bO9uFKy6AIvcUkf1474ryp3Fubn0IsIuEietc4RoebES4O6W89oRU1STvOYTfXUZj3bV8Qt+A0+6eqxJXg7cu8j3jSN2ASeNZxwrDmRTIu+ULBzDi/nuc16jSGBS2Rb6rGpt88zYDoOOMVfAj6rWRmabr/YZ5em58BXfyScWaftHjwxh7oOwVnvnpimhNLKnJ9kCkJWhVMnhP+JgAYm6+kmoKXIk+CfT7037Rot2JLOo/CUjrdRA0IdGOION9D9AQzNwNvvpK2t9gg16lWfUxv4J3GR6qn8AdwKMnLaF1Eu6l5oswob+D2A7KlqhwqMH32QIDAQAB",
+  "permissions": ["nativeMessaging", "downloads", "storage", "activeTab"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "src/ui/popup/popup.html",
+    "default_title": "TubeShift",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+  }
+}
