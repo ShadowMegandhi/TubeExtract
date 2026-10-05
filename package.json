@@ -1,6 +1,6 @@
 {
-  "name": "extracttube",
-  "version": "0.2.0",
+  "name": "tubeextract",
+  "version": "0.3.0",
   "private": true,
   "description": "Chrome extension: save YouTube links as MP4/MP3 and convert media files in the browser.",
   "type": "module",

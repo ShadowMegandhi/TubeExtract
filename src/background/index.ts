@@ -1,5 +1,5 @@
 /**
- * Service worker: owns the native-messaging port to extracttube-helper and the
+ * Service worker: owns the native-messaging port to tubeextract-helper and the
  * state of the current YouTube download.
  *
  * State lives in chrome.storage.session so the popup can close and reopen at

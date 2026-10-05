@@ -37,11 +37,11 @@ jobs:
           build() {
             GOOS=$1 GOARCH=$2 go build -trimpath -ldflags "-s -w -X main.version=$VERSION" -o "../release/$3" .
           }
-          build windows amd64 extracttube-helper-windows-x64.exe
-          build darwin  arm64 extracttube-helper-macos-apple-silicon
-          build darwin  amd64 extracttube-helper-macos-intel
-          build linux   amd64 extracttube-helper-linux-x64
-          build linux   arm64 extracttube-helper-linux-arm64
+          build windows amd64 tubeextract-helper-windows-x64.exe
+          build darwin  arm64 tubeextract-helper-macos-apple-silicon
+          build darwin  amd64 tubeextract-helper-macos-intel
+          build linux   amd64 tubeextract-helper-linux-x64
+          build linux   arm64 tubeextract-helper-linux-arm64
 
       - name: Checksums
         working-directory: release
@@ -52,5 +52,5 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh release create "$GITHUB_REF_NAME" release/* \
-            --title "ExtractTube $GITHUB_REF_NAME" \
+            --title "TubeExtract $GITHUB_REF_NAME" \
             --notes-file .github/release-notes.md

@@ -1,6 +1,6 @@
 import { command } from '../shared/useSession';
 
-export const RELEASES_URL = 'https://github.com/ShadowMegandhi/extracttube/releases/latest';
+export const RELEASES_URL = 'https://github.com/ShadowMegandhi/tubeextract/releases/latest';
 
 type Props = { lastError: string | undefined };
 
@@ -10,11 +10,11 @@ export function SetupCard({ lastError }: Props) {
       <div class="card card-warn">
         <b>One-time setup needed for YouTube</b>
         <p class="small" style={{ margin: '6px 0 0' }}>
-          Chrome can't save YouTube videos by itself, so ExtractTube uses a small free helper app on your computer.
+          Chrome can't save YouTube videos by itself, so TubeExtract uses a small free helper app on your computer.
         </p>
         <ol class="small">
           <li>
-            Download <b>extracttube-helper</b> for your system from the{' '}
+            Download <b>tubeextract-helper</b> for your system from the{' '}
             <a href={RELEASES_URL} target="_blank" rel="noopener noreferrer">latest release</a>.
           </li>
           <li>

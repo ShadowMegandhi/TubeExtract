@@ -1,5 +1,5 @@
 /**
- * Packs dist/ into release/extracttube-extension-v<version>.zip for people to
+ * Packs dist/ into release/tubeextract-extension-v<version>.zip for people to
  * unzip and "Load unpacked". Uses the system zip tool so the repo needs no zip
  * dependency. On Windows that is the bundled bsdtar: PowerShell's
  * Compress-Archive writes backslash paths that break unzipping on macOS/Linux.
@@ -14,7 +14,7 @@ if (!existsSync('dist/manifest.json')) {
 }
 const { version } = JSON.parse(readFileSync('dist/manifest.json', 'utf8'));
 mkdirSync('release', { recursive: true });
-const out = resolve(`release/extracttube-extension-v${version}.zip`);
+const out = resolve(`release/tubeextract-extension-v${version}.zip`);
 rmSync(out, { force: true });
 
 if (process.platform === 'win32') {

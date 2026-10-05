@@ -1,8 +1,8 @@
 /**
- * The native-messaging protocol between the extension and extracttube-helper.
+ * The native-messaging protocol between the extension and tubeextract-helper.
  * helper/protocol.go mirrors these shapes; change both together.
  */
-export const HOST_NAME = 'com.extracttube.helper';
+export const HOST_NAME = 'com.tubeextract.helper';
 
 export type DownloadFormat = 'mp4' | 'mp3';
 

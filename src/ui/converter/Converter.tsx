@@ -113,7 +113,7 @@ export function Converter() {
     <div class="page">
       <div class="brand">
         <img src="/icons/icon-128.png" alt="" />
-        <h1>ExtractTube Converter</h1>
+        <h1>TubeExtract Converter</h1>
       </div>
       <p class="lead muted">Convert video and audio files on your own computer. Nothing is uploaded.</p>
 

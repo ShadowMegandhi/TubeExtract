@@ -7,7 +7,7 @@ import { join, resolve } from 'node:path';
 const DIST = resolve('dist');
 const EXTENSION_ID = 'mipkkpejehmafkadcbfiiecngoghaook';
 const BASE = `chrome-extension://${EXTENSION_ID}`;
-const HELPER = join(process.env['LOCALAPPDATA'] ?? '', 'ExtractTube', 'extracttube-helper.exe');
+const HELPER = join(process.env['LOCALAPPDATA'] ?? '', 'TubeExtract', 'tubeextract-helper.exe');
 
 let context: BrowserContext;
 let media: string;
@@ -18,7 +18,7 @@ function probe(file: string): string {
 }
 
 test.beforeAll(async () => {
-  const dir = mkdtempSync(join(tmpdir(), 'extracttube-e2e-'));
+  const dir = mkdtempSync(join(tmpdir(), 'tubeextract-e2e-'));
   media = join(dir, 'sample clip.mp4');
   execFileSync('ffmpeg', ['-v', 'error', '-y',
     '-f', 'lavfi', '-i', 'testsrc=duration=3:size=640x360:rate=25',

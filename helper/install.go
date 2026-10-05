@@ -24,7 +24,7 @@ type hostManifestJSON struct {
 func hostManifest(exe string) []byte {
 	b, _ := json.MarshalIndent(hostManifestJSON{
 		Name:           hostName,
-		Description:    "ExtractTube helper: saves YouTube videos with yt-dlp",
+		Description:    "TubeExtract helper: saves YouTube videos with yt-dlp",
 		Path:           exe,
 		Type:           "stdio",
 		AllowedOrigins: []string{allowedOrigin()},
@@ -60,7 +60,7 @@ func installSelf() (string, error) {
 
 func install(interactive bool) int {
 	defer pause(interactive)
-	fmt.Printf("ExtractTube helper %s setup\n\n", version)
+	fmt.Printf("TubeExtract helper %s setup\n\n", version)
 	fmt.Println("Installing to:", appDir())
 	if err := os.MkdirAll(binDir(), 0o755); err != nil {
 		return fail("couldn't create the folder", err)
@@ -90,7 +90,7 @@ func install(interactive bool) int {
 	for _, r := range registered {
 		fmt.Println("  [ok] registered:", r)
 	}
-	fmt.Println("\nAll done! Go back to Chrome, open ExtractTube and click \"Check again\".")
+	fmt.Println("\nAll done! Go back to Chrome, open TubeExtract and click \"Check again\".")
 	fmt.Println("Videos are saved to:", downloadsDir())
 	return 0
 }
@@ -101,7 +101,7 @@ func uninstall(interactive bool) int {
 	if err := os.RemoveAll(binDir()); err != nil {
 		return fail("couldn't remove the tools", err)
 	}
-	fmt.Println("ExtractTube helper removed from Chrome.")
+	fmt.Println("TubeExtract helper removed from Chrome.")
 	fmt.Println("You can delete this folder too:", appDir())
 	return 0
 }

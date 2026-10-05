@@ -1,4 +1,4 @@
-// extracttube-helper is the native-messaging host behind the ExtractTube Chrome
+// tubeextract-helper is the native-messaging host behind the TubeExtract Chrome
 // extension. Double-click it to install; Chrome then starts it on demand.
 package main
 
@@ -10,10 +10,10 @@ import (
 )
 
 // version is set at release time with -ldflags "-X main.version=...".
-var version = "0.2.0"
+var version = "0.3.0"
 
 const (
-	hostName = "com.extracttube.helper"
+	hostName = "com.tubeextract.helper"
 	// Fixed by the "key" in the extension's manifest.json.
 	extensionID = "mipkkpejehmafkadcbfiiecngoghaook"
 )
@@ -34,7 +34,7 @@ func main() {
 	args := os.Args[1:]
 	if origin, ok := chromeOrigin(args); ok {
 		if origin != allowedOrigin() {
-			fmt.Fprintln(os.Stderr, "extracttube-helper: refusing caller", origin)
+			fmt.Fprintln(os.Stderr, "tubeextract-helper: refusing caller", origin)
 			os.Exit(1)
 		}
 		os.Exit(runHost())
@@ -52,7 +52,7 @@ func main() {
 	case "version", "--version":
 		fmt.Println(version)
 	default:
-		fmt.Println("usage: extracttube-helper [install|uninstall|version] [--yes]")
+		fmt.Println("usage: tubeextract-helper [install|uninstall|version] [--yes]")
 		os.Exit(2)
 	}
 }

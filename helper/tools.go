@@ -101,7 +101,7 @@ func download(url string, dst io.Writer, label string) error {
 	if err != nil {
 		return err
 	}
-	req.Header.Set("User-Agent", "extracttube-helper/"+version)
+	req.Header.Set("User-Agent", "tubeextract-helper/"+version)
 	resp, err := client.Do(req)
 	if err != nil {
 		return err

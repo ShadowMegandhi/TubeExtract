@@ -18,7 +18,7 @@ export function App() {
     <div class="popup">
       <header class="header">
         <img src="/icons/icon-48.png" alt="" />
-        <h1>ExtractTube</h1>
+        <h1>TubeExtract</h1>
       </header>
       <nav class="tabs" role="tablist">
         <button role="tab" aria-selected={tab === 'youtube'} onClick={() => setTab('youtube')}>YouTube link</button>
