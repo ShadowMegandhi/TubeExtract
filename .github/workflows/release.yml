@@ -1,8 +1,11 @@
 name: Release
 
-# Push a tag like v0.1.0 to build everything and publish a GitHub Release.
+# Fully automatic: every push to main whose manifest version has no release yet
+# gets built, tagged and published. Bump the version (npm run bump), commit, push.
+# Pushing a v* tag by hand still works too.
 on:
   push:
+    branches: [main]
     tags: ['v*']
 
 permissions:
@@ -13,27 +16,54 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - uses: actions/setup-node@v4
+      - name: Decide whether this version needs a release
+        id: ver
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERSION=$(node -p "require('./public/manifest.json').version")
+          TAG="v$VERSION"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release $TAG already exists; nothing to do."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+            echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - if: steps.ver.outputs.skip == 'false'
+        uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
-      - run: npm ci
-      - run: npm test
-      - run: npm run build
-      - run: npm run zip
+      - if: steps.ver.outputs.skip == 'false'
+        run: npm ci
+      - if: steps.ver.outputs.skip == 'false'
+        run: npm test
+      - if: steps.ver.outputs.skip == 'false'
+        run: npm run build
+      - if: steps.ver.outputs.skip == 'false'
+        run: npm run zip
 
-      - uses: actions/setup-go@v5
+      - if: steps.ver.outputs.skip == 'false'
+        uses: actions/setup-go@v5
         with:
           go-version-file: helper/go.mod
           cache-dependency-path: helper/go.sum
-      - name: Test helper
+      - if: steps.ver.outputs.skip == 'false'
+        name: Test helper
         working-directory: helper
         run: go test ./...
-      - name: Build helper binaries
+      - if: steps.ver.outputs.skip == 'false'
+        name: Build helper binaries
         working-directory: helper
+        env:
+          VERSION: ${{ steps.ver.outputs.version }}
         run: |
-          VERSION="${GITHUB_REF_NAME#v}"
           build() {
             GOOS=$1 GOARCH=$2 go build -trimpath -ldflags "-s -w -X main.version=$VERSION" -o "../release/$3" .
           }
@@ -43,14 +73,18 @@ jobs:
           build linux   amd64 tubeextract-helper-linux-x64
           build linux   arm64 tubeextract-helper-linux-arm64
 
-      - name: Checksums
+      - if: steps.ver.outputs.skip == 'false'
+        name: Checksums
         working-directory: release
         run: sha256sum * > SHA256SUMS.txt
 
-      - name: Publish release
+      - if: steps.ver.outputs.skip == 'false'
+        name: Publish release (creates the tag too)
         env:
           GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.ver.outputs.tag }}
         run: |
-          gh release create "$GITHUB_REF_NAME" release/* \
-            --title "TubeExtract $GITHUB_REF_NAME" \
+          gh release create "$TAG" release/* \
+            --target "$GITHUB_SHA" \
+            --title "TubeExtract $TAG" \
             --notes-file .github/release-notes.md

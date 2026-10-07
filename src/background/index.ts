@@ -12,6 +12,7 @@
 import { HOST_NAME, type HelperMessage, type HelperRequest, type UiCommand } from '@core/messages';
 import { applyHelperMessage, newJob, type Job } from '@core/job';
 import { parseYouTubeUrl } from '@core/youtube';
+import { isNewerVersion, LATEST_RELEASE_API, parseLatestRelease } from '@core/updates';
 import { readState, writeHelper, writeJob, type HelperState } from './state';
 
 // yt-dlp's first start can be slow, especially while antivirus scans it.
@@ -149,6 +150,33 @@ async function handle(cmd: UiCommand): Promise<string | null> {
       return null;
   }
 }
+
+// Chrome never updates an unpacked extension, so check GitHub ourselves. The
+// popup shows a banner when a newer release exists (see UpdateBanner).
+const UPDATE_ALARM = 'check-updates';
+const UPDATE_EVERY_MINUTES = 6 * 60;
+
+async function checkForUpdates(): Promise<void> {
+  const current = chrome.runtime.getManifest().version;
+  try {
+    const res = await fetch(LATEST_RELEASE_API, { headers: { Accept: 'application/vnd.github+json' } });
+    if (!res.ok) return;
+    const latest = parseLatestRelease(await res.json());
+    const available = latest && isNewerVersion(current, latest.version) ? latest : null;
+    await chrome.storage.local.set({ update: { available, checkedAt: Date.now() } });
+  } catch {
+    // Offline or rate-limited: keep whatever we knew before and try again later.
+  }
+}
+
+chrome.alarms.onAlarm.addListener((alarm) => {
+  if (alarm.name === UPDATE_ALARM) void checkForUpdates();
+});
+chrome.runtime.onInstalled.addListener(() => {
+  void chrome.alarms.create(UPDATE_ALARM, { periodInMinutes: UPDATE_EVERY_MINUTES });
+  void checkForUpdates();
+});
+chrome.runtime.onStartup.addListener(() => void checkForUpdates());
 
 chrome.runtime.onMessage.addListener((cmd: UiCommand, sender, reply) => {
   if (sender.id !== chrome.runtime.id) return false;

@@ -3,6 +3,7 @@ import type { SessionState } from '../../background/state';
 import { command, useSession } from '../shared/useSession';
 import { YouTubeTab } from './YouTubeTab';
 import { ConvertTab } from './ConvertTab';
+import { UpdateBanner } from './UpdateBanner';
 
 type Tab = 'youtube' | 'convert';
 
@@ -24,6 +25,7 @@ export function App() {
         <button role="tab" aria-selected={tab === 'youtube'} onClick={() => setTab('youtube')}>YouTube link</button>
         <button role="tab" aria-selected={tab === 'convert'} onClick={() => setTab('convert')}>Convert a file</button>
       </nav>
+      <UpdateBanner />
       <main class="panel">
         {tab === 'youtube'
           ? (session ? <YouTubeTab session={session} /> : <p class="muted">Loading…</p>)
