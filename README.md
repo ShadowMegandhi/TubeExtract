@@ -46,6 +46,16 @@ Then open TubeExtract in Chrome and click **Check again**. You can delete the he
 - **YouTube:** open a video and click the TubeExtract icon. The link is filled in for you. Choose **MP4 video** or **MP3 audio** and a quality, then click **Download**. Files go to your normal Downloads folder. You can close the popup; the download keeps going, and the progress is still there when you reopen it.
 - **Your own files:** click **Convert a file → Open the converter**, drop in a file, choose a format and click **Convert**. Audio conversions are quick. Video takes longer because it runs inside the browser, so keep the tab open. Files over about 1.5 GB may run out of browser memory.
 
+## Updating
+
+TubeExtract checks GitHub for new versions on its own (every few hours, nothing is sent about you). When one exists, a yellow notice appears at the top of the popup:
+
+1. Click **Download** in the notice. You get the new `tubeextract-extension-vX.Y.Z.zip`.
+2. Unzip it **over** your existing TubeExtract folder, replacing the old files.
+3. Open `chrome://extensions` and click the small ↻ (reload) on the TubeExtract card.
+
+If a release also changes the helper, the notice says so; run the new helper file once, same as the first time.
+
 ## Troubleshooting
 
 | Problem | Fix |
@@ -81,7 +91,15 @@ go test ./...
 go build -o bin/tubeextract-helper .   # then run it once to register
 ```
 
-Releases are built by GitHub Actions when a `v*` tag is pushed (`.github/workflows/release.yml`).
+Releasing is automatic. Bump the version and push:
+
+```sh
+npm run bump        # 0.3.1 -> 0.3.2  (or: npm run bump minor / major / 1.2.3)
+git commit -am "release: v0.3.2"
+git push
+```
+
+GitHub Actions (`.github/workflows/release.yml`) sees a version on `main` with no release yet, runs the tests, builds the extension zip and all five helper binaries, and publishes the release with checksums. Pushes that don't change the version just run CI.
 
 ## Licence
 
